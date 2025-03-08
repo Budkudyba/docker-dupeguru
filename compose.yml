@@ -10,7 +10,7 @@ services:
     environment:
       - TZ=America/New_York
     ports:
-      - "5809:5800" # web/noVNC access
+      - "5800:5800" # web/noVNC access
       # - "5900:5900"   # VNC
     volumes:
       # Persist configuration and state data
