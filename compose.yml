@@ -1,0 +1,28 @@
+# https://github.com/arsenetar/dupeguru
+# with
+# https://github.com/jlesage/docker-baseimage-gui
+
+services:
+  dupeguru:
+    build: .
+    container_name: dupeguru
+    # user: "1000:1000"
+    environment:
+      - TZ=America/New_York
+    ports:
+      - "5809:5800" # web/noVNC access
+      # - "5900:5900"   # VNC
+    volumes:
+      # Persist configuration and state data
+      - ./appdata/dupeguru:/config:rw
+      # Mount a trash folder (for deleted files)
+      - ./appdata/dupeguru-trash:/trash:rw
+      # Mount two folders (adjust the host paths accordingly)
+      - type: bind
+        source: /path/to/folder1
+        target: /folder1
+      - type: bind
+        source: /path/to/folder2
+        target: /folder2
+      # - /path/to/folder1:/storage/folder1:rw
+      # - /path/to/folder2:/storage/folder2:rw
